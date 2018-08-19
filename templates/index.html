@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block head %}
+        <!-- app's own JavaScript -->
+        <script src="/static/separator.js"></script>
+{% endblock %}
+
+{% block title %}
+    Upload Files
+{% endblock %}
+
+{% block main %}
+    <!-- https://bootsnipp.com/snippets/featured/bootstrap-drag-and-drop-upload -->
+    <div class="panel panel-default">
+
+        <div class="panel-heading" text-align="left"><strong>Upload Files</strong> <small>Bootstrap files upload</small></div>
+        <div class="panel-body">
+            <h4>Select used separator</h4>
+            <form id="separator_value" method='GET'>
+                    <select class="form-control" id="separator" name="separator" method="GET">
+                        <option value=";">Semicolon (;)</option>
+                        <option value=" ">Space ( )</option>
+                        <option value=",">Comma (,)</option>
+                        <option value="\t">Tabulation (\t)</option>
+                    </select>
+
+                <button class="btn btn-primary" type="submit" id="upload_separator">Submit</button>
+            </form>
+            <p id='separator_log'></p>
+        </div>
+
+
+        <div class="panel-body">
+
+            <!-- Standar Form -->
+            <h4>Select files from your computer</h4>
+            <form enctype="multipart/form-data" id="file" method='POST'>
+                <div class="form-inline">
+                    <div class="form-group">
+                        <input type="file" name="file" id="file" multiple>
+                    </div>
+                    <button type="submit" class="btn btn-sm btn-primary" id="upload_file">Upload files</button>
+                </div>
+            </form>
+            <p id='file_log'></p>
+        </div>
+
+
+
+        </div>
+    </div>
+
+{% endblock %}

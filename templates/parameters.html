@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block head %}
+        <!-- app's own JavaScript -->
+        <script src="/static/scripts.js"></script>
+{% endblock %}
+
+{% block title %}
+    Upload Files
+{% endblock %}
+
+{% block main %}
+    {% if info_text != '' %}
+        <h3>Info</h3>
+        <div>{{ info_text }}</div>
+        </br>
+    {% endif %}
+
+
+    <form action="/parameters" method="post" id="parameters">
+        {% for i in range(len_column_names - 1) %}
+
+            <div class="form-group">
+                <input autocomplete="off" class="form-control" id= "lower_bound_{{ (i + 1) }}" name= "lower_bound_{{ (i + 1) }}" placeholder="Lower Bound" type="number"/>
+                <input autocomplete="off" class="form-control" id= "value_{{ (i + 1) }}" name= "value_{{ (i + 1) }}" placeholder="Value {{ column_names[i] }}" type="number"/>
+                <input autocomplete="off" class="form-control" id= "upper_bound_{{ (i + 1) }}" name= "upper_bound_{{ (i + 1) }}" placeholder="Upper Bound" type="number"/>
+            </div>
+
+        {% endfor %}
+    <button class="btn btn-primary" type="submit">Submit Values and Bounds</button>
+    </form>
+
+
+{% endblock %}

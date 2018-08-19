@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block main %}
+    <div class="panel panel-default">
+        <div class="panel-heading" text-align="left"><strong>Results</strong> <small></small></div>
+        <div class="panel-body">
+
+    <table class="table">
+        <thead>
+            <th></th>
+            <th>Analysis</th>
+            <th></th>
+            <th>Parameters</th>
+            <th></th>
+            <th></th>
+        </thead>
+        <thead>
+            <th>Variable</th>
+            <th>Value</th>
+            <th>Standard Deviation</th>
+            <th>Lower Bound</th>
+            <th>Initial Value</th>
+            <th>Upper Bound</th>
+        </thead>
+
+        {% for i in range(len_solution - 1) %}
+
+            <tr>
+                <th>{{ column_names[i] }}</th>
+                <td>{{ (solution[i])|round(1, 'common') }}</td>
+                <td>{{ (std[i])|round(1, 'common') }}</td>
+                <td>{{ bounds[i][0] }}</td>
+                <td>{{ x0[i] }}</td>
+                <td>{{ bounds[i][1] }}</td>
+            </tr>
+
+        {% endfor %}
+    </table>
+        <p align='left'>Number of results taken into account : {{ len_results }}</p>
+
+        </div>
+    </div>
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading" text-align="left"><strong>Refine</strong> <small>Compute with the best results</small></div>
+        <div class="panel-body">
+
+        <p>Enter below the amount of results you want to use. The computation will be done again with x% of the best most accurate results</p>
+        <form action="/results" method="post" id="refine">
+            <input autocomplete="off" class="form-control" name= "percentage" placeholder="Percentage" type="number"/>
+        <button class="btn btn-primary" type="submit">Submit percentage</button>
+        </form>
+        </div>
+    </div>
+
+
+{% endblock %}
